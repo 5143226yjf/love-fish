@@ -1,6 +1,7 @@
 /**
  * Created by lethe on 17-1-18.
  */
+//绘制大鱼
 var momObj = function () {
     this.x;
     this.y;
@@ -26,6 +27,7 @@ momObj.prototype.draw = function () {
     this.angle = lerpAngle(beta,this.angle,0.6);
 
     ctx1.save();
+    //大鱼随着鼠标移动
     ctx1.translate(this.x,this.y);
     ctx1.rotate(this.angle);
     ctx1.drawImage(this.bigEye,-this.bigEye.width*0.5,-this.bigEye.height*0.5);
