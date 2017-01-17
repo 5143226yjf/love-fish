@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .one{
+            width:100px;
+            height:50px;
+            border-radius: 50px 50px 0 0;
+            border: 1px solid #000;
+        }
+       /* .two{
+            width:100px;
+            height:50px;
+            position: absolute;
+            border-top: 1px solid #000;
+            top:51px;
+            z-index: 12;
+            background: #fff;*/
+
+    </style>
+</head>
+<body>
+<div class="one">
+</div>
+<div class="two"></div>
+
+<canvas id="round"></canvas>
+<script>
+    var canvas = document.getElementById('round');
+    var context = canvas.getContext('2d');
+    function rads(x) {
+        return Math.PI*x/180;
+    }
+    context.beginPath();
+    context.moveTo(200,200);
+    context.arc(200,200,50,0,rads(180),false);
+    context.closePath();
+    context.fillStyle = '#000';
+    context.lineWidth = 1;
+    context.fill();
+    context.stroke();
+</script>
+</body>
+</html>
