@@ -61,7 +61,7 @@ function gameloop() {
     ctx1.clearRect(0,0,canWidth,canHeight);  ///清空ctx1的像素
     mom.draw();
 }
-
+//获取鼠标位置
 function onMouseMove(e) {
     if(e.offsetX || e.layerX){
         mx = e.offsetX == undefined ? e.layerX : e.offsetX;
