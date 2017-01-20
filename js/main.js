@@ -12,7 +12,14 @@ var canHeight;
 
 var ane;
 var fruit;
+
 var mom;
+var momTail = [];
+var momEye = [];
+
+var baby;
+var babyTail = [];
+var babyEye = [];
 
 var mx;
 var my;
@@ -29,7 +36,7 @@ function game() {
 function init() {
     can1 = document.getElementById('canvas1');
     ctx1 = can1.getContext('2d');   //获取绘制2D绘制上下文
-    can2 = document.getElementById('canvas2');
+    can2 = document.getElementById('canvas2');  //背景，海葵，食物
     ctx2 = can2.getContext('2d');
     bgPic.src='./src/background.jpg';
     canWidth = can1.width;
@@ -44,8 +51,27 @@ function init() {
     mom = new momObj();
     mom.init();
 
+    baby = new babyObj();
+    baby.init();
+
     mx = canWidth *0.5;
     my = canHeight * 0.5;
+
+    //鱼尾巴
+    for(var i = 0;i < 8; i++){
+        momTail[i] = new Image();
+        momTail[i].src = "./src/bigTail" + i + ".png";
+        babyTail[i] = new Image();
+        babyTail[i].src = "./src/babyTail" + i +".png";
+    }
+
+    for(var j = 0; j < 2; j++){
+        momEye[j] = new Image();
+        momEye[j].src = "./src/bigEye" + j + ".png";
+
+        babyEye[j] = new Image();
+        babyEye[j].src = "./src/babyEye" + j +".png";
+    }
 
     can1.addEventListener('mousemove',onMouseMove,false);
 }
@@ -54,6 +80,7 @@ function gameloop() {
     var now = Date.now();
     deltaTime = now - lastTime;
     lastTime = now;
+    if(deltaTime > 40) deltaTime = 40;
     drawBackground();
     ane.draw();
     fruitMonitor();
@@ -61,6 +88,7 @@ function gameloop() {
     ctx1.clearRect(0,0,canWidth,canHeight);  ///清空ctx1的像素
     mom.draw();
     momFruitCollision();
+    baby.draw();
 }
 //获取鼠标位置
 function onMouseMove(e) {
