@@ -60,6 +60,7 @@ function gameloop() {
     fruit.draw();
     ctx1.clearRect(0,0,canWidth,canHeight);  ///清空ctx1的像素
     mom.draw();
+    momFruitCollision();
 }
 //获取鼠标位置
 function onMouseMove(e) {

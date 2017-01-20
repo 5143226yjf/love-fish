@@ -56,6 +56,7 @@ fruitObj.prototype.update = function () {
             num++;
     }
 };
+
 fruitObj.prototype.born = function (i) {
     var aneId = Math.floor(Math.random() * ane.num);
     this.x[i] = ane.x[aneId];
@@ -69,6 +70,9 @@ fruitObj.prototype.born = function (i) {
     else{
         this.fruitType[i] = "orange";
     }
+};
+fruitObj.prototype.dead = function (i) {
+    this.alive[i] = false;
 };
 
 function fruitMonitor() {
