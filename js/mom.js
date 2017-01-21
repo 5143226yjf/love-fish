@@ -6,19 +6,19 @@ var momObj = function () {
     this.x;
     this.y;
     this.angle;
-    this.bigBody = new Image();
 
     this.bigTailTimer = 0;
     this.bigTailCount = 0;
 
     this.bigEyeTimer = 0;
     this.bigEyeCount = 0;
+
+    this.bigBodyCount = 0;
 };
 momObj.prototype.init = function () {
     this.x = canWidth * 0.5;
     this.y = canHeight * 0.5;
     this.angle = 0;
-    this.bigBody.src = './src/bigSwim0.png';
 };
 momObj.prototype.draw = function () {
     this.x = lerpDistance(mx,this.x,0.98);
@@ -50,8 +50,14 @@ momObj.prototype.draw = function () {
     ctx1.rotate(this.angle);
     var bigTailCount = this.bigTailCount;
     var bigEyeCount = this.bigEyeCount;
+    var bigBodyCount = this.bigBodyCount;
     ctx1.drawImage(momTail[bigTailCount],-momTail[bigTailCount].width*0.5 + 30,-momTail[bigTailCount].height*0.5);
-    ctx1.drawImage(this.bigBody,-this.bigBody.width*0.5,-this.bigBody.height*0.5);
+    if(data.double == 1){
+        ctx1.drawImage(momBodyOrg[bigBodyCount],-momBodyOrg[bigBodyCount].width*0.5,-momBodyOrg[bigBodyCount].height*0.5);
+    }
+    else{
+        ctx1.drawImage(momBodyBlue[bigBodyCount],-momBodyBlue[bigBodyCount].width*0.5,-momBodyBlue[bigBodyCount].height*0.5);
+    }
     ctx1.drawImage(momEye[bigEyeCount],-momEye[bigEyeCount].width*0.5,-momEye[bigEyeCount].height*0.5);
     ctx1.restore();
 };

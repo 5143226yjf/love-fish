@@ -16,13 +16,18 @@ var fruit;
 var mom;
 var momTail = [];
 var momEye = [];
+var momBodyOrg = [];
+var momBodyBlue = [];
 
 var baby;
 var babyTail = [];
 var babyEye = [];
+var babyBody = [];
 
 var mx;
 var my;
+
+var data;
 
 var bgPic= new Image();
 
@@ -63,6 +68,11 @@ function init() {
         momTail[i].src = "./src/bigTail" + i + ".png";
         babyTail[i] = new Image();
         babyTail[i].src = "./src/babyTail" + i +".png";
+
+        momBodyOrg[i] = new Image();
+        momBodyOrg[i].src = "./src/bigSwim" + i + ".png";
+        momBodyBlue[i] = new Image();
+        momBodyBlue[i].src = "./src/bigSwimBlue" +i + ".png";
     }
 
     for(var j = 0; j < 2; j++){
@@ -73,7 +83,16 @@ function init() {
         babyEye[j].src = "./src/babyEye" + j +".png";
     }
 
+    for(var k = 0; k < 20; k++){
+        babyBody[k] = new Image();
+        babyBody[k].src = "./src/babyFade" + k + ".png";
+    }
+    data = new dataObj();
+
     can1.addEventListener('mousemove',onMouseMove,false);
+
+    ctx1.font = "30px Verdana";
+    ctx1.textAlign = "center";
 }
 function gameloop() {
     window.requestAnimFrame(gameloop);
@@ -87,13 +106,17 @@ function gameloop() {
     fruit.draw();
     ctx1.clearRect(0,0,canWidth,canHeight);  ///清空ctx1的像素
     mom.draw();
-    momFruitCollision();
     baby.draw();
+    data.draw();
+    momFruitCollision();
+    momBabyCollision();
 }
 //获取鼠标位置
 function onMouseMove(e) {
-    if(e.offsetX || e.layerX){
-        mx = e.offsetX == undefined ? e.layerX : e.offsetX;
-        my = e.offsetY == undefined ? e.layerY : e. offsetY;
+    if(!data.gameOver){
+        if(e.offsetX || e.layerX){
+            mx = e.offsetX == undefined ? e.layerX : e.offsetX;
+            my = e.offsetY == undefined ? e.layerY : e. offsetY;
+        }
     }
 }
